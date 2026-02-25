@@ -87,7 +87,7 @@
             <button id="global2">Example: Highlight Correct</button>
 
             <div class="cheat-section-title">Gold Quest</div>
-            <button id="gold1">Give Self Gold</button>
+            <button id="gold1">Set Gold</button>
             <button id="gold2">Take Gold (self only)</button>
 
             <div class="cheat-section-title">Battle Royale</div>
@@ -154,5 +154,6 @@
         if (btn) btn.onclick = cheats[id];
     });
 })();
+
 
 
