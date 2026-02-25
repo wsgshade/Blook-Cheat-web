@@ -131,13 +131,13 @@
         gui.style.top = (e.clientY - offsetY) + "px";
     });
 
-    /* ---------- BUTTON HANDLERS (EMPTY FOR YOU TO FILL) ---------- */
+    
     const cheats = {
         global1: () => console.log("Auto Answer placeholder"),
         global2: () => console.log("Highlight Correct placeholder"),
 
-        gold1: () => console.log("Give Self Gold placeholder"),
-        gold2: () => console.log("Take Gold placeholder"),
+        gold1: () => console.log("Set Gold"),
+        gold2: () => console.log("javascript:(()=>%7Bconst d=async()=>%7Bvar e=document.createElement("iframe"),e=(document.body.append(e),window.prompt=e.contentWindow.prompt.bind(window),e.remove(),Number(parseInt(prompt("How much gold would you like?")))),t=Object.values(function e(t=document.querySelector("body>div"))%7Breturn Object.values(t)%5B1%5D?.children?.%5B0%5D?._owner.stateNode?t:e(t.querySelector(":scope>div"))%7D())%5B1%5D.children%5B0%5D._owner%5B"stateNode"%5D;t.setState(%7Bgold:e,gold2:e%7D),t.props.liveGameController.setVal(%7Bpath:"c/".concat(t.props.client.name),val:%7Bb:t.props.client.blook,g:e%7D%7D)%7D;let i=new Image;i.src="https://raw.githubusercontent.com/Coding4hours/Blooket-Cheats/main/autoupdate/timestamps/gold/setGold.png?"+Date.now(),i.crossOrigin="Anonymous",i.onload=function()%7Bvar e=document.createElement("canvas").getContext("2d");e.drawImage(i,0,0,this.width,this.height);let t=e.getImageData(0,0,this.width,this.height)%5B"data"%5D,o="",n;for(let e=0;e<t.length;e+=4)%7Bvar r=String.fromCharCode(256*t%5Be+1%5D+t%5Be+2%5D);if(o+=r,"/"==r&&"*"==n)break;n=r%7Dvar e=document.querySelector("iframe"),%5B,a,c%5D=o.match(/LastUpdated: (.+?); ErrorMessage: "(.+?)"/);(parseInt(a)<=1693429947473%7C%7Ce.contentWindow.confirm(c))&&d()%7D,i.onerror=i.onabort=()=>(i.src=null,d())%7D)();"),
 
         br1: () => console.log("Instant Answer placeholder"),
         br2: () => console.log("Speed Boost placeholder"),
@@ -154,4 +154,5 @@
         if (btn) btn.onclick = cheats[id];
     });
 })();
+
 
