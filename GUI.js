@@ -1,26 +1,39 @@
 (function () {
-    if (document.getElementById("simple-cheat-gui")) return;
+    if (document.getElementById("cheat-gui")) return;
 
-    // --- STYLE ---
+    /* ---------- STYLE ---------- */
     const style = document.createElement("style");
     style.textContent = `
-        #simple-cheat-gui {
+        #cheat-toggle {
             position: fixed;
             top: 20px;
             left: 20px;
-            width: 200px;
-            height: 260px;
+            background: #111;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            z-index: 999999;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+        }
+        #cheat-gui {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 240px;
+            height: 340px;
             background: #1e1e1e;
             color: white;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.4);
             font-family: Arial, sans-serif;
             z-index: 999999;
-            display: flex;
+            display: none;
             flex-direction: column;
             overflow: hidden;
         }
-        #simple-cheat-header {
+        #cheat-header {
             background: #333;
             padding: 8px;
             cursor: move;
@@ -28,12 +41,18 @@
             text-align: center;
             user-select: none;
         }
-        #simple-cheat-list {
+        #cheat-list {
             flex: 1;
             overflow-y: auto;
             padding: 8px;
         }
-        #simple-cheat-list button {
+        .cheat-section-title {
+            margin: 10px 0 5px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #ccc;
+        }
+        #cheat-list button {
             width: 100%;
             margin-bottom: 6px;
             padding: 6px;
@@ -43,35 +62,60 @@
             color: white;
             cursor: pointer;
         }
-        #simple-cheat-list button:hover {
+        #cheat-list button:hover {
             background: #666;
         }
     `;
     document.head.appendChild(style);
 
-    // --- GUI ---
+    /* ---------- TOGGLE BUTTON ---------- */
+    const toggle = document.createElement("div");
+    toggle.id = "cheat-toggle";
+    toggle.textContent = "Open Cheats";
+    document.body.appendChild(toggle);
+
+    /* ---------- GUI ---------- */
     const gui = document.createElement("div");
-    gui.id = "simple-cheat-gui";
+    gui.id = "cheat-gui";
 
     gui.innerHTML = `
-        <div id="simple-cheat-header">Cheats</div>
-        <div id="simple-cheat-list">
-            <button id="cheat1">Enable Cheat 1</button>
-            <button id="cheat2">Enable Cheat 2</button>
-            <button id="cheat3">Enable Cheat 3</button>
-            <button id="cheat4">Enable Cheat 4</button>
-            <button id="cheat5">Enable Cheat 5</button>
-            <button id="cheat6">Enable Cheat 6</button>
-            <button id="cheat7">Enable Cheat 7</button>
-            <button id="cheat8">Enable Cheat 8</button>
+        <div id="cheat-header">Game Mode Cheats</div>
+        <div id="cheat-list">
+
+            <div class="cheat-section-title">Global Cheats</div>
+            <button id="global1">Example: Auto Answer</button>
+            <button id="global2">Example: Highlight Correct</button>
+
+            <div class="cheat-section-title">Gold Quest</div>
+            <button id="gold1">Give Self Gold</button>
+            <button id="gold2">Take Gold (self only)</button>
+
+            <div class="cheat-section-title">Battle Royale</div>
+            <button id="br1">Instant Answer</button>
+            <button id="br2">Speed Boost</button>
+
+            <div class="cheat-section-title">Factory</div>
+            <button id="factory1">Max Out Production</button>
+            <button id="factory2">Auto Collect</button>
+
+            <div class="cheat-section-title">Tower Defense</div>
+            <button id="td1">Max Cash</button>
+            <button id="td2">Instant Cooldown</button>
+
         </div>
     `;
-
     document.body.appendChild(gui);
 
-    // --- DRAGGING ---
+    /* ---------- OPEN / CLOSE ---------- */
+    toggle.onclick = () => {
+        const open = gui.style.display === "flex";
+        gui.style.display = open ? "none" : "flex";
+        toggle.textContent = open ? "Open Cheats" : "Close Cheats";
+    };
+
+    /* ---------- DRAGGING ---------- */
     let dragging = false, offsetX = 0, offsetY = 0;
-    const header = document.getElementById("simple-cheat-header");
+    const header = document.getElementById("cheat-header");
 
     header.addEventListener("mousedown", e => {
         dragging = true;
@@ -87,13 +131,26 @@
         gui.style.top = (e.clientY - offsetY) + "px";
     });
 
-    // --- BUTTON ACTIONS ---
-    document.getElementById("cheat1").onclick = () => alert("Cheat 1 enabled!");
-    document.getElementById("cheat2").onclick = () => alert("Cheat 2 enabled!");
-    document.getElementById("cheat3").onclick = () => alert("Cheat 3 enabled!");
-    document.getElementById("cheat4").onclick = () => alert("Cheat 4 enabled!");
-    document.getElementById("cheat5").onclick = () => alert("Cheat 5 enabled!");
-    document.getElementById("cheat6").onclick = () => alert("Cheat 6 enabled!");
-    document.getElementById("cheat7").onclick = () => alert("Cheat 7 enabled!");
-    document.getElementById("cheat8").onclick = () => alert("Cheat 8 enabled!");
+    /* ---------- BUTTON HANDLERS (EMPTY FOR YOU TO FILL) ---------- */
+    const cheats = {
+        global1: () => console.log("Auto Answer placeholder"),
+        global2: () => console.log("Highlight Correct placeholder"),
+
+        gold1: () => console.log("Give Self Gold placeholder"),
+        gold2: () => console.log("Take Gold placeholder"),
+
+        br1: () => console.log("Instant Answer placeholder"),
+        br2: () => console.log("Speed Boost placeholder"),
+
+        factory1: () => console.log("Max Production placeholder"),
+        factory2: () => console.log("Auto Collect placeholder"),
+
+        td1: () => console.log("Max Cash placeholder"),
+        td2: () => console.log("Instant Cooldown placeholder"),
+    };
+
+    Object.keys(cheats).forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.onclick = cheats[id];
+    });
 })();
