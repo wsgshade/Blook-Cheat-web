@@ -154,3 +154,4 @@
         if (btn) btn.onclick = cheats[id];
     });
 })();
+
